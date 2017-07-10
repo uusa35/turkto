@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notifications\UserActivate;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,14 +37,14 @@ class HomeController extends Controller
      */
     public function confirmEmail($token)
     {
-        $this->middleware('guest');
         $user = User::where('secret', $token)->first();
-        if ($user) {
+        $diff = Carbon::parse($user->created_at)->diffInMinutes(Carbon::now('Asia/Kuwait'));
+
+        if ($user && $diff <= 10) {
             $user->whereId($user->id)->update(['active' => 1]);
             return redirect()->home()->with('success', 'u are activated');
         }
-
-        return redirect()->home()->with('error', 'your account still not activated .. please check with the administrator');
+        return redirect()->route('resend')->with('warning', 'your activiation is expired .. please resend again');
     }
 
     public function getResendActivation()
