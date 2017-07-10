@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function getResendActivation()
     {
-        return view('errors.activate');
+        return view('frontend.modules.user.activate');
     }
 
     public function postResendActivation(Request $request)
@@ -56,7 +56,7 @@ class HomeController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
             $user->notify(new UserActivate($user));
-            return redirect()->home()->with('success','email is sent');
+            return redirect()->home()->with('success', 'email is sent');
         } else {
             return redirect()->home()->with('error', 'no such email in our db');
         }
