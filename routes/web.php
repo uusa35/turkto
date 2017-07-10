@@ -21,6 +21,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('register/confirm/{id}', 'HomeController@confirmEmail');
 
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('resend', 'HomeController@getResendActivation');
+    Route::post('resend', 'HomeController@postResendActivation');
+});
+
+
 
 /*
  * for development

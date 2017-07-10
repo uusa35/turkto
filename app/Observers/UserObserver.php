@@ -19,7 +19,7 @@ class UserObserver
     public function created(User $user)
     {
         // create secret activation
-        $user->update(['secret' => rand(9999, 99999999999)]);
+        $user->update(['secret' => rand(1111, 9999)]);
         // send the email
         $user->notify(new UserActivate($user));
     }
