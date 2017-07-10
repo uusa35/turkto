@@ -10,7 +10,6 @@
                     <div class="panel-body">
                         You are logged in!
                     </div>
-                    <a href="{{ route('logout') }}" class="btn">logout</a>
                 </div>
             </div>
         </div>
