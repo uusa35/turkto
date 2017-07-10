@@ -17,7 +17,7 @@ class UserIsActive
     {
         if (!auth()->user()->active) {
             auth()->logout();
-            return redirect()->to('login')->with('warning','ur account not activated');
+            return redirect()->to('login')->with('warning','ur account not activated .. check your inbox');
         }
         return $next($request);
     }
