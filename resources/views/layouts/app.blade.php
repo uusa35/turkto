@@ -15,6 +15,10 @@
 </head>
 <body>
 <div id="app">
+
+
+        @include('partials.notifications')
+
     @if(auth()->check())
         @include('partials.nav');
     @endif

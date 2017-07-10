@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -56,6 +56,7 @@ class HomeController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
             $user->notify(new UserActivate($user));
+            return redirect()->home()->with('success','email is sent');
         } else {
             return redirect()->home()->with('error', 'no such email in our db');
         }

@@ -63,7 +63,7 @@
                                             Forgot Your Password?
                                         </a>
 
-                                        <a class="btn btn-link" href="{{ route('resend') }}">
+                                        <a class="btn btn-default" href="{{ route('resend') }}">
                                             Resend Activation
                                         </a>
                                 </div>

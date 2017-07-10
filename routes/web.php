@@ -13,19 +13,17 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'isActive'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index');
     Route::resource('user', 'UserController');
 });
 
 Route::get('register/confirm/{id}', 'HomeController@confirmEmail');
-
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('resend', 'HomeController@getResendActivation');
+    Route::get('resend', 'HomeController@getResendActivation')->name('resend');
     Route::post('resend', 'HomeController@postResendActivation');
 });
-
 
 
 /*

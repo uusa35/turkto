@@ -42,6 +42,7 @@ class UserActivate extends Notification
     public function toMail($notifiable)
     {
         $url = config('app.url') . '/register/confirm/' . $this->user->secret;
+//        dd($url);
         return (new MailMessage)
             ->from('test@test.com')
             ->greeting('Welcome')
