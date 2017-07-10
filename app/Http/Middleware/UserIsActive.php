@@ -15,10 +15,10 @@ class UserIsActive
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->active) {
-            return $next($request);
+        if (!auth()->user()->active) {
+            auth()->logout();
+            return redirect()->to('login')->with('warning','ur account not activated');
         }
-        return abort('activate', 'you not activated .. please activate your email first');
-
+        return $next($request);
     }
 }

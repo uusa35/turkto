@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth', 'isActive'], function () {
+Route::group(['middleware' => ['auth', 'isActive']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index');
     Route::resource('user', 'UserController');
